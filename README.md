@@ -39,7 +39,7 @@ def get_returnMean(N):   #传入的是持有的天数
     buydata['return'] = buydata['sellprice']/buydata['buyprice']-1
     return buydata['return']  #返回收益的序列 
 ```
-[video](uploading)    
+[video](https://youtu.be/t9BjCFywtY0)    
 [Back](#m2-vs-stocks)    
 
 
