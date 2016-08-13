@@ -4,6 +4,15 @@
 
 ## M2 vs Stocks
 
+
+[How to turn codes into a function to easily change a parameter?](#make-func)    
+[How to do basic statistics like `mean()`?](#statistics)    
+[How to fill up columns with 0s with `len(), range(), .iat()`](#fill-up-column)    
+[How to create a dataframe from scatch?](#dataframe-from-scratch)    
+[How to search and use unpaid dataAPI?](#unpaid-api)    
+[How to read first 10 rows of a dataframe?](#first-n-rows)    
+[How to convert a column of a dataframe to a list?](#column-to-list)    
+[How to get all stock names which can be borrowed to sell?](#borrow-sell)     
 [How to convert "2016-08-12" to "20160812"?](#transform-date-string)    
 [How to filter out rows using a column?](#filter-out-rows)    
 [How to access all trading calendar date of ShangHai market?](#trading-date-shanghai)    
@@ -12,6 +21,112 @@
 [How to access a column of a dataframe?](#access-column)    
 [How to plot M2-10-year change?](#m2-10years-plot)    
 [How to search and use DataAPI?](#search-use-dataapi)    
+
+
+### make func    
+=> How to turn codes into a function to easily change a parameter?    
+```python   
+def get_returnMean(N):   #传入的是持有的天数
+    buydata = pd.DataFrame()
+    buydata['secID'] = liangrongdata['secID']
+    buydata['buydate'] = map(lambda x: date[date.index(x)+1], liangrongdata['intoDate'].values.tolist())  #纳入标的的第二天的交易日
+    buydata['selldate'] = map(lambda x: date[date.index(x)+1+N], liangrongdata['intoDate'].values.tolist())  #持有N天后的交易日
+    buydata['buyprice'] = np.zeros(len(buydata))
+    buydata['sellprice'] = np.zeros(len(buydata))
+    for i in range(len(buydata)):
+        buydata.iat[i,3] = DataAPI.MktEqudAdjGet(tradeDate=buydata.iat[i,1],secID=buydata.iat[i,0],field='closePrice').iat[0,0]
+        buydata.iat[i,4] = DataAPI.MktEqudAdjGet(tradeDate=buydata.iat[i,2],secID=buydata.iat[i,0],field='closePrice').iat[0,0]
+    buydata['return'] = buydata['sellprice']/buydata['buyprice']-1
+    return buydata['return']  #返回收益的序列 
+```
+[video](uploading)    
+[Back](#m2-vs-stocks)    
+
+
+### statistics    
+=> How to do basic statistics like `mean()`?    
+```python
+buydata['return'].mean()    
+```
+[Back](#m2-vs-stocks)    
+
+
+
+### fill up column    
+=> How to fill up columns with 0s with `len(), range(), .iat()`?    
+```python
+for i in range(len(buydata)):
+    buydata.iat[i,3] = DataAPI.MktEqudAdjGet(tradeDate=buydata.iat[i,1],secID=buydata.iat[i,0],field='closePrice').iat[0,0]  #获取买入时的前复权收盘价
+    buydata.iat[i,4] = DataAPI.MktEqudAdjGet(tradeDate=buydata.iat[i,2],secID=buydata.iat[i,0],field='closePrice').iat[0,0]  #获取卖出时的前复权收盘价
+```
+[video](https://youtu.be/2ttOzZx-MgM )    
+[demo](https://uqer.io/labs/notebooks/unpaid%20api%20and%20build%20dataframe.nb)    
+[Back](#m2-vs-stocks)    
+
+
+
+### dataframe from scratch    
+=> How to create a dataframe from scatch?    
+```python
+import pandas as pd
+import numpy as np
+
+buydata = pd.DataFrame()  
+buydata['secID'] = liangrongdata['secID']   
+buydata['buydate'] = map(lambda x: date[date.index(x)+1], liangrongdata['intoDate'].values.tolist())  
+buydata['selldate'] = map(lambda x: date[date.index(x)+11], liangrongdata['intoDate'].values.tolist())  #持有十天后的交易日
+buydata['buyprice'] = np.zeros(len(buydata)) 
+buydata['sellprice'] = np.zeros(len(buydata))
+```
+[video](https://youtu.be/pH7Us_xOcgU)    
+[demo](https://uqer.io/labs/notebooks/unpaid%20api%20and%20build%20dataframe.nb)    
+[Back](#m2-vs-stocks)    
+
+
+### unpaid API    
+=> How to search and access unpaid API?    
+- there is a free to try option 
+- try english and chinese names to search and scroll  
+
+[video](https://youtu.be/2liaQwRP0Qs)    
+[Back](#m2-vs-stocks)    
+
+
+
+
+### first n rows    
+=> How to read first 10 rows of a dataframe?    
+```python
+liangrongdata.head(10)  #前十个数据
+buydata.tail(10) # last 10
+```
+[Back](#m2-vs-stocks)    
+
+
+### column to list   
+=> 3 ways to turn a column of a dataframe to a list 
+```python
+stklist.tolist()
+stklist.values.tolist()
+stklist.unique().tolist()
+```
+[video](https://youtu.be/LxeSVlmpbRQ)    
+[demo](https://uqer.io/labs/notebooks/stocks%20borrow%20to%20sell.nb)    
+[Back](#m2-vs-stocks)     
+
+
+### borrow sell    
+=> How to get all stock names which can be borrowed to sell?    
+```python
+stklist = DataAPI.FstDetailGet(secID=set_universe('A'),beginDate=u"20160701").secID.unique().tolist()    
+```
+- access a column of a dataframe    
+- filter for only unique names/values  
+- turn the column to a list     
+
+[video](https://youtu.be/x41umRPEulQ)    
+[demo](https://uqer.io/labs/notebooks/stocks%20borrow%20to%20sell.nb)    
+[Back](#m2-vs-stocks)     
 
 
 ### tranform date string
