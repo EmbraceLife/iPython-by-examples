@@ -4,12 +4,44 @@
 
 ## M2 vs Stocks
 
+[How to convert "2016-08-12" to "20160812"?](#transform-date-string)    
+[How to filter out rows using a column?](#filter-out-rows)    
+[How to access all trading calendar date of ShangHai market?](#trading-date-shanghai)    
 [How to import libraries](#import-lib)    
 [How to save dataframe to csv file?](#save-csv)    
 [How to access a column of a dataframe?](#access-column)    
 [How to plot M2-10-year change?](#m2-10years-plot)    
 [How to search and use DataAPI?](#search-use-dataapi)    
 
+
+### tranform date string
+=> How to convert "2016-08-12" to "20160812"?    
+```python
+date = map(lambda x: x[0:4]+x[5:7]+x[8:10], data['calendarDate'].values.tolist())   
+```
+[video](https://youtu.be/SBeO6uurvU0)      
+[demo](https://uqer.io/labs/notebooks/date%20string%20without%20space.nb)    
+[Back](#m2-vs-stocks)    
+
+
+### filter out rows
+=> How to filter out rows using a column?     
+```python
+data = data[data['isOpen'] == 1]
+```
+[video](https://youtu.be/SBeO6uurvU0 )    
+[Back](#m2-vs-stocks)   
+
+
+### trading date shanghai
+=> How to access all trading calendar date of ShangHai market?    
+```python
+data = DataAPI.TradeCalGet(exchangeCD=u"XSHG",beginDate='20070101',endDate='20160731',field=['calendarDate','isOpen'])
+# files = a list above; 
+```
+[video](https://youtu.be/jtb69Y-2Nmg)    
+[demo](https://uqer.io/labs/notebooks/trading%20date.nb)    
+[Back](#m2-vs-stocks)   
 
 
 ### import lib    
@@ -26,7 +58,7 @@ import seaborn as sns
 from CAL.PyCAL import *
 font.set_size(22)  # set font size
 ```
-[video](uploading)     
+[video](https://youtu.be/hZ8XWL_YO7g)     
 [demo](https://uqer.io/labs/notebooks/import%20library.nb)    
 [Back](#m2-vs-stocks)   
 
