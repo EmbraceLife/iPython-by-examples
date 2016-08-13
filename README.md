@@ -4,17 +4,50 @@
 
 ## M2 vs Stocks
 
+[How to import libraries](#import-lib)    
 [How to save dataframe to csv file?](#save-csv)    
+[How to access a column of a dataframe?](#access-column)    
 [How to plot M2-10-year change?](#m2-10years-plot)    
 [How to search and use DataAPI?](#search-use-dataapi)    
 
 
+
+### import lib    
+=> How to import libraries with diff options    
+```python
+import numpy as np # import the whole lib
+import pandas as pd 
+from matplotlib import pylab # import a func of a lib
+import matplotlib.pyplot as plt # import a func of a lib and give it a short name
+from matplotlib.pyplot import * # import a lib's sub lib and import everything inside the sub lib
+matplotlib.style.use('ggplot') # set plot style  
+import seaborn as sns 
+
+from CAL.PyCAL import *
+font.set_size(22)  # set font size
+```
+[video](uploading)     
+[demo](https://uqer.io/labs/notebooks/import%20library.nb)    
+[Back](#m2-vs-stocks)   
+
+
 ### save csv
 => How to save dataframe to csv file?     
+```pyhton
+data2016.to_csv("AB2016.csv", encoding="GBK") 
+```
+[video](https://youtu.be/OUC58dv2uqs)      
+[demo](https://uqer.io/labs/notebooks/access%20column%20and%20save%20to%20csv.nb)    
+[Back](#m2-vs-stocks)   
 
-### access column data    
+
+### access column    
 => How to access a column from a dataframe?     
-[video](recorded)    
+```python
+tickers2006 = data2006["ticker"] # column name "ticker"
+```
+[video](https://youtu.be/UrLETCTByNo)    
+[demo](https://uqer.io/labs/notebooks/access%20column%20and%20save%20to%20csv.nb)     
 [Back](#m2-vs-stocks)    
 
 
@@ -32,7 +65,7 @@ import seaborn
 data.plot(x='periodDate', y='dataValue',title=u'M2-in-10-years',figsize=(14,6))
 ```
 
-[video](uploading)
+[video](https://youtu.be/XGQbOtntqds)
 [demo](https://uqer.io/labs/notebooks/M2-plot.nb)
 [Back](#m2-vs-stocks)    
 
