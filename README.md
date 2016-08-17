@@ -4,7 +4,8 @@
 
 ## M2 vs Stocks
 
-
+[How to print out stock data info nicely?](#stock-print-nicely)    
+[How to get daily, weekly, monthly stock data?](#daily-weekly-monthly-data)    
 [How to turn codes into a function to easily change a parameter?](#make-func)    
 [How to do basic statistics like `mean()`?](#statistics)    
 [How to fill up columns with 0s with `len(), range(), .iat()`](#fill-up-column)    
@@ -21,6 +22,24 @@
 [How to access a column of a dataframe?](#access-column)    
 [How to plot M2-10-year change?](#m2-10years-plot)    
 [How to search and use DataAPI?](#search-use-dataapi)    
+
+
+### stock print nicely    
+=> How to print out stock data info nicely?     
+```python 
+print dailydata.to_html()
+```
+[demo](https://uqer.io/labs/notebooks/get%20monthly%20and%20weekly%20data%20.nb)     
+
+
+### daily weekly monthly data
+=> How to get daily, weekly, monthly stock data?  
+```python
+dailydata = DataAPI.MktEqudAdjGet(secID = '600298.XSHG' ,beginDate=u"20160401",endDate=u"",field=u"",pandas="1")
+weeklydata = DataAPI.MktEquwAdjGet(secID = '600298.XSHG' ,beginDate=u"20160401",endDate=u"",field=u"",pandas="1")
+monthlydata = DataAPI.MktEqumAdjGet(secID = '600298.XSHG' ,beginDate=u"20160401",endDate=u"",field=u"",pandas="1")
+```
+[demo](https://uqer.io/labs/notebooks/get%20monthly%20and%20weekly%20data%20.nb)    
 
 
 ### make func    
