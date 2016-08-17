@@ -118,8 +118,12 @@ buydata['sellprice'] = np.zeros(len(buydata))
 
 ### create column     
 => How to tranform a column of a dataframe?    
-```python
-
+```python    
+buydata['secID'] = liangrongdata['secID']      
+buydata['buydate'] = map(lambda x: date[date.index(x)+1], liangrongdata['intoDate'].values.tolist())     
+buydata['buyprice'] = np.zeros(len(buydata))    
+for i in range(len(buydata)):   
+    buydata.iat[i,4] = DataAPI.MktEqudAdjGet(tradeDate=buydata.iat[i,2],secID=buydata.iat[i,0],field='closePrice').iat[0,0]
 ```
 
 
