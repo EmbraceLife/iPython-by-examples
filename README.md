@@ -9,7 +9,10 @@
 [How to turn codes into a function to easily change a parameter?](#make-func)    
 [How to do basic statistics like `mean()`?](#statistics)    
 [How to fill up columns with 0s with `len(), range(), .iat()`](#fill-up-column)    
-[How to create a dataframe from scatch?](#dataframe-from-scratch)    
+[How to use for in loop with range?](#for-in-range)    
+[How to create a dataframe from scatch?](#dataframe-from-scratch)   
+[How to tranform a column of a dataframe?](#create-column)    
+[How to create an empty dataframe?](#create-empty-dataframe)        
 [How to search and use unpaid dataAPI?](#unpaid-api)    
 [How to read first 10 rows of a dataframe?](#first-n-rows)    
 [How to convert a column of a dataframe to a list?](#column-to-list)    
@@ -30,6 +33,7 @@
 print dailydata.to_html()
 ```
 [demo](https://uqer.io/labs/notebooks/get%20monthly%20and%20weekly%20data%20.nb)     
+[Back](#m2-vs-stocks)    
 
 
 ### daily weekly monthly data
@@ -40,6 +44,7 @@ weeklydata = DataAPI.MktEquwAdjGet(secID = '600298.XSHG' ,beginDate=u"20160401",
 monthlydata = DataAPI.MktEqumAdjGet(secID = '600298.XSHG' ,beginDate=u"20160401",endDate=u"",field=u"",pandas="1")
 ```
 [demo](https://uqer.io/labs/notebooks/get%20monthly%20and%20weekly%20data%20.nb)    
+[Back](#m2-vs-stocks)    
 
 
 ### make func    
@@ -83,6 +88,15 @@ for i in range(len(buydata)):
 [Back](#m2-vs-stocks)    
 
 
+### for in range    
+=> How to use for in loop with range?    
+```python
+for i in range(len(buydata)): 
+```
+[demo](https://uqer.io/labs/notebooks/unpaid%20api%20and%20build%20dataframe.nb)    
+[Back](#m2-vs-stocks)    
+
+
 
 ### dataframe from scratch    
 => How to create a dataframe from scatch?    
@@ -98,6 +112,22 @@ buydata['buyprice'] = np.zeros(len(buydata))
 buydata['sellprice'] = np.zeros(len(buydata))
 ```
 [video](https://youtu.be/pH7Us_xOcgU)    
+[demo](https://uqer.io/labs/notebooks/unpaid%20api%20and%20build%20dataframe.nb)    
+[Back](#m2-vs-stocks)    
+
+
+### create column     
+=> How to tranform a column of a dataframe?    
+```python
+
+```
+
+
+### create empty dataframe    
+=> How to create an empty dataframe?    
+```python 
+buydata = pd.DataFrame()  
+```
 [demo](https://uqer.io/labs/notebooks/unpaid%20api%20and%20build%20dataframe.nb)    
 [Back](#m2-vs-stocks)    
 
