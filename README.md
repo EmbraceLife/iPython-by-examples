@@ -202,8 +202,10 @@ buydata['sellprice'] = np.zeros(len(buydata))
 
 
 ### create column     
-=> How to tranform a column of a dataframe?    
+=> How to tranform or create a new column of a dataframe?    
+- must use [] method not . method    
 ```python    
+ufo['location'] = ufo.City + ", " + ufo.State
 buydata['secID'] = liangrongdata['secID']      
 buydata['buydate'] = map(lambda x: date[date.index(x)+1], liangrongdata['intoDate'].values.tolist())     
 buydata['buyprice'] = np.zeros(len(buydata))    
