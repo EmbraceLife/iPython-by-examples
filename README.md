@@ -30,6 +30,28 @@
 [How to read csv file?](#read-csv)    
 [How to read dirty file ignoring pre and post comment?](#read-dirty-comment-file)    
 [How to use jupyter notebook?](#jupyter)    
+[What is a dataframe and a pandas series?](#dataframe-series) 
+[How to know an object's type?](#get-type)   
+
+
+
+
+### get type
+=> How to know an object's type?     
+```python
+type(data1) # dataframe
+type(data1['City'])  # series
+```
+[Back](#m2-vs-stocks)    
+
+
+
+### dataframe series
+=> What is a dataframe and a pandas series?     
+- dataframe is a table like dataset  
+- a series is a column of this dataframe 
+[Back](#m2-vs-stocks)    
+
 
 
 
@@ -44,6 +66,8 @@
 - up down arrow to move between cells 
 - `space` and `shift space` to move to top and bottom of page 
 - `enter` to step into edit mode
+[Back](#m2-vs-stocks)    
+
 
 ### read dirty comment file    
 => How to read dirty file ignoring pre and post comment?   
@@ -53,12 +77,16 @@
 import pandas as pd
 pd.read_table('drinks_topbottom.csv', sep=',', skiprows=2, skip_footer=2)
 ```
+[Back](#m2-vs-stocks)    
+
+
 
 ### read csv   
 => How to read a simple csv file with read_table?   
 ```python
 import pandas as pd  
-data3=pd.read_table('drinks.csv', sep=',')
+data1 = pd.read_table('drinks.csv', sep=',')
+data2 = pd.read_csv('drinks.csv')
 ```
 [Back](#m2-vs-stocks)    
 
@@ -300,8 +328,14 @@ data2016.to_csv("AB2016.csv", encoding="GBK")
 
 ### access column    
 => How to access a column from a dataframe?     
+- [] method is universally working on all kinds of names 
+- . method only works for well-behaved column names
 ```python
-tickers2006 = data2006["ticker"] # column name "ticker"
+# [] works for all situations 
+data2006["ticker"] # column name "ticker"
+data2006["sec short name"] # data2006.sec_short_name won't work   
+data2006["head"] # data2006.head won't get you the 'head' column, as they are syntax terms 
+data2006.ticker # . method works for more ideal and regular column names 
 ```
 [video](https://youtu.be/UrLETCTByNo)    
 [demo](https://uqer.io/labs/notebooks/access%20column%20and%20save%20to%20csv.nb)     
