@@ -27,6 +27,8 @@
 [How to search and use DataAPI?](#search-use-dataapi)    
 
 
+
+
 ### stock print nicely    
 => How to print out stock data info nicely?     
 ```python 
