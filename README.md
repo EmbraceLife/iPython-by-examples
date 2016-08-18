@@ -25,9 +25,64 @@
 [How to access a column of a dataframe?](#access-column)    
 [How to plot M2-10-year change?](#m2-10years-plot)    
 [How to search and use DataAPI?](#search-use-dataapi)    
+[How to read a tsv file?](#read-tsv)    
+[How to read dirty file](#read-dirty-file)    
+[How to read csv file?](#read-csv)    
+[How to read dirty file ignoring pre and post comment?](#read-dirty-comment-file)    
+[How to use jupyter notebook?](#jupyter)    
 
 
 
+### jupyter
+=> How to use jupyter notebook?    
+- `esc` for command mode   
+- `m` for markdown  
+- `y` for coding   
+- `o` toggle output of selected cell  
+- `a` insert a cell above
+- `b` insert a cell below
+- up down arrow to move between cells 
+- `space` and `shift space` to move to top and bottom of page 
+- `enter` to step into edit mode
+
+### read dirty comment file    
+=> How to read dirty file ignoring pre and post comment?   
+- first 2 lines are comments 
+- last 2 lines are comments too
+```python
+import pandas as pd
+pd.read_table('drinks_topbottom.csv', sep=',', skiprows=2, skip_footer=2)
+```
+
+### read csv   
+=> How to read a simple csv file with read_table?   
+```python
+import pandas as pd  
+data3=pd.read_table('drinks.csv', sep=',')
+```
+[Back](#m2-vs-stocks)    
+
+### read dirty file    
+=> How to read dirty file? 
+- sep by |
+- no header
+- add custom colnames 
+```python
+import pandas as pd
+user_cols=['user_id', 'age', 'gender', 'occupation', 'zip_code']
+data1=pd.read_table("u.user.txt", header=None, sep='|', names=user_cols)
+```
+[Back](#m2-vs-stocks)    
+
+
+### read tsv   
+=> How to read a tsv file? 
+```python
+import pandas as pd
+# default is tsv format
+data = pd.read_table("chipotle.tsv")
+```
+[Back](#m2-vs-stocks)    
 
 ### stock print nicely    
 => How to print out stock data info nicely?     
