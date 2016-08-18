@@ -32,8 +32,49 @@
 [How to use jupyter notebook?](#jupyter)    
 [What is a dataframe and a pandas series?](#dataframe-series) 
 [How to know an object's type?](#get-type)   
+[How to check basic summary of a dataframe?](#data-summary)    
+[How to understand function, method and attributes to a dataframe or series?](#func-method-attribute)    
+[How to get the types of all columns of a dataframe?](#dtypes)
+[How to check a function's api?](#check-api)   
 
 
+### check api
+=> How to check a function's api?    
+- put cursor inside ()
+- press shift + tab 1-4 times 
+```python
+type(data)
+```
+[Back](#m2-vs-stocks)    
+
+
+### dtypes
+=> How to get the types of all columns of a dataframe?    
+```python
+data.dtypes
+```
+[Back](#m2-vs-stocks)    
+
+### func method attribute
+=> How to understand function, method and attributes to a dataframe or series?     
+```python 
+data.dtypes # dataframe's attributes
+data.shape  # dataframe's attributes
+data.head() # method
+data.describe() # method
+type(data) # function 
+```
+[Back](#m2-vs-stocks)    
+
+
+### data summary
+=> How to check basic summary of a dataframe?    
+```python
+import pandas as pd
+data = pd.read_csv('imdb_1000.csv')
+data.describe()
+```
+[Back](#m2-vs-stocks)    
 
 
 ### get type
