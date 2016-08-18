@@ -30,13 +30,55 @@
 [How to read csv file?](#read-csv)    
 [How to read dirty file ignoring pre and post comment?](#read-dirty-comment-file)    
 [How to use jupyter notebook?](#jupyter)    
-[What is a dataframe and a pandas series?](#dataframe-series) 
+[What is a dataframe and a pandas series?](#dataframe-series)      
 [How to know an object's type?](#get-type)   
 [How to check basic summary of a dataframe?](#data-summary)    
 [How to understand function, method and attributes to a dataframe or series?](#func-method-attribute)    
-[How to get the types of all columns of a dataframe?](#dtypes)
-[How to check a function's api?](#check-api)   
+[How to get the types of all columns of a dataframe?](#dtypes)     
+[How to check a function's api?](#check-api)      
+[How to install and update libraries, diff versions?](#install-update-libraries)     
+[How to rename columns of a dataframe?](#rename-columns)    
 
+
+### rename columns    
+=> How to rename columns of a dataframe?     
+```python
+import pandas as pd
+ufo = pd.read_csv('ufo.csv')
+ufo.head()
+
+# rename two of the columns by using the 'rename' method
+ufo.rename(columns={'Colors Reported':'Colors_Reported', 'Shape Reported':'Shape_Reported'}, inplace=True)
+ufo.columns # check column names 
+
+# replace all of the column names by overwriting the 'columns' attribute
+ufo_cols = ['city', 'colors reported', 'shape reported', 'state', 'time']
+ufo.columns = ufo_cols    
+ufo.columns   
+
+# replace the column names during the file reading process by using the 'names' parameter
+ufo = pd.read_csv('http://bit.ly/uforeports', header=0, names=ufo_cols)
+ufo.columns
+# Explicitly pass header=0 to be able to replace existing names
+
+# replace all spaces with underscores in the column names by using the 'str.replace' method
+ufo.columns = ufo.columns.str.replace(' ', '_')
+ufo.columns
+```
+[Back](#m2-vs-stocks)    
+
+
+
+### install update libraries    
+=> How to install and update libraries, diff versions?     
+```python
+python -m pip install SomePackage    
+python -m pip install SomePackage==1.0.4    # specific version
+python -m pip install "SomePackage>=1.0.4"  # minimum version
+# to update is to install again, or the following code 
+python -m pip install --upgrade SomePackage
+```
+[Back](#m2-vs-stocks)    
 
 ### check api
 => How to check a function's api?    
@@ -50,6 +92,9 @@ type(data)
 
 ### dtypes
 => How to get the types of all columns of a dataframe?    
+- float64
+- int64
+- object => just meaning strings   
 ```python
 data.dtypes
 ```
