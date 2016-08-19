@@ -38,6 +38,63 @@
 [How to check a function's api?](#check-api)      
 [How to install and update libraries, diff versions?](#install-update-libraries)     
 [How to rename columns of a dataframe?](#rename-columns)    
+[How to remove columns of a dataframe?](#remove-columns)    
+[How to remove rows of a dataframe?](#remove-rows)
+[How to check the structure of a dataframe?](#structure-dataframe)    
+[How to sort a column or a dataframe?](#sort-dataframe)    
+
+
+
+### sort dataframe    
+```python
+import pandas as pd
+movies = pd.read_csv('imdb_1000.csv')
+movies.title.sort_values()
+movies['title'].sort_values(ascending=False)
+movies.sort_values('title')
+movies.sort_values('title', ascending=False)
+movies.sort_values(['content_rating', 'duration'], ascending=False)
+```
+[Back](#m2-vs-stocks)     
+
+
+### structure dataframe 
+```python
+print ufo.ndim  # dimension
+print ufo.size  # rows * columns
+print ufo.shape # (rows, columns)
+print ufo.dtypes # columns types 
+```
+[Back](#m2-vs-stocks)     
+
+
+### remove rows  
+=> How to remove rows of a dataframe?    
+- row name -> index or labels 
+- use list to include row names 
+- axis = 0 is default
+```python
+import pandas as pd
+ufo = pd.read_csv('ufo.csv')
+ufo.drop(2, inplace=True, axis=0) # remove the 3rd row
+ufo.drop([0,1,4], inplace=True, axis=0) # remove the first,second,fifth row
+```
+[Back](#m2-vs-stocks)     
+
+
+
+### remove columns
+=> How to remove columns of a dataframe?    
+- axis 0 -> rows, axis 1 -> columns    
+- inplace = True -> convension
+```python
+import pandas as pd
+ufo = pd.read_csv('ufo.csv')
+ufo.drop('Colors reported', inplace=True, axis=1)
+ufo.drop(['State', 'City'], inplace=True, axis=1)
+```
+[Back](#m2-vs-stocks)     
+
 
 
 ### rename columns    
@@ -65,7 +122,8 @@ ufo.columns
 ufo.columns = ufo.columns.str.replace(' ', '_')
 ufo.columns
 ```
-[Back](#m2-vs-stocks)    
+[video](https://youtu.be/A5mwmidZnug)    
+[Back](#m2-vs-stocks)     
 
 
 
