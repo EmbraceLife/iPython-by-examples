@@ -42,8 +42,29 @@
 [How to remove rows of a dataframe?](#remove-rows)
 [How to check the structure of a dataframe?](#structure-dataframe)    
 [How to sort a column or a dataframe?](#sort-dataframe)    
+[How to filter a dataframe?](#filter-dataframe)    
+[How to check length of a list?](#length-list-dataframe)    
+
+### length list dataframe     
+=> How to check length of a list?    
+```python
+len(list)
+len(dataframe)
+```
 
 
+### filter dataframe    
+=> How to filter a dataframe    
+```python
+# create a list in which each element refers to a DataFrame row: True if the row satisfies the condition, False otherwise
+booleans = []
+for length in movies.duration:
+    if length >= 200:
+        booleans.append(True)
+    else:
+        booleans.append(False)
+
+```
 
 ### sort dataframe    
 ```python
@@ -311,6 +332,14 @@ buydata['return'].mean()
 for i in range(len(buydata)):
     buydata.iat[i,3] = DataAPI.MktEqudAdjGet(tradeDate=buydata.iat[i,1],secID=buydata.iat[i,0],field='closePrice').iat[0,0]  #获取买入时的前复权收盘价
     buydata.iat[i,4] = DataAPI.MktEqudAdjGet(tradeDate=buydata.iat[i,2],secID=buydata.iat[i,0],field='closePrice').iat[0,0]  #获取卖出时的前复权收盘价
+    
+# create a list in which each element refers to a DataFrame row: True if the row satisfies the condition, False otherwise
+booleans = []
+for length in movies.duration:
+    if length >= 200:
+        booleans.append(True)
+    else:
+        booleans.append(False)    
 ```
 [video](https://youtu.be/2ttOzZx-MgM )    
 [demo](https://uqer.io/labs/notebooks/unpaid%20api%20and%20build%20dataframe.nb)    
