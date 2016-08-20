@@ -14,7 +14,7 @@
 [How to tranform a column of a dataframe?](#create-column)    
 [How to create an empty dataframe?](#create-empty-dataframe)        
 [How to search and use unpaid dataAPI?](#unpaid-api)    
-[How to read first 10 rows of a dataframe?](#first-n-rows)    
+[How to read first/last 10 rows of a dataframe?](#first-n-rows)    
 [How to convert a column of a dataframe to a list?](#column-to-list)    
 [How to get all stock names which can be borrowed to sell?](#borrow-sell)     
 [How to convert "2016-08-12" to "20160812"?](#transform-date-string)    
@@ -42,8 +42,56 @@
 [How to remove rows of a dataframe?](#remove-rows)
 [How to check the structure of a dataframe?](#structure-dataframe)    
 [How to sort a column or a dataframe?](#sort-dataframe)    
-[How to filter a dataframe?](#filter-dataframe)    
+[How to fill a list using for in loop and append?](#fill-list)    
 [How to check length of a list?](#length-list-dataframe)    
+[How to convert a list to a series?](#list-to-series)    
+[How to filter rows of a dataframe?](#filter-rows)    
+[How to filter by multiple conditions on columns?](#more-fitlers)    
+[How to work on or and and?](#or-and)    
+
+
+### more filters
+=> How to filter by multiple conditions on columns?    
+```python
+# use the '|' operator to specify that a row can match any of the three criteria
+movies[(movies.genre == 'Crime') | (movies.genre == 'Drama') | (movies.genre == 'Action')].head(10)
+
+# or equivalently, use the 'isin' method
+movies[movies.genre.isin(['Crime', 'Drama', 'Action'])].head(10)
+```
+
+
+### or and 
+```python
+True or False
+False or False
+True and True
+True and False
+data[(data.duration' > 200) & (data.type == 'genre')] # and
+data[(data.duration' > 200) | (data.type == 'genre')] # pipe
+
+```
+
+
+### filter rows    
+=> How to filter rows of a dataframe?    
+```python
+is_long_series = pd.Series(is_long_list)
+data[is_long_series]
+data[data.duration > 200]
+data[data.duration > 200].genre
+data[data.duration > 200]['genre']
+# better solution: first row filter and then column selection 
+data.loc(data.duration > 200, 'genre')
+```
+
+
+### list to series    
+=> How to convert a list to a series?    
+```python
+is_long_series = pd.Series(is_long_list)
+```
+
 
 ### length list dataframe     
 => How to check length of a list?    
@@ -53,8 +101,8 @@ len(dataframe)
 ```
 
 
-### filter dataframe    
-=> How to filter a dataframe    
+### fill list    
+=> How to fill a list using for in loop and append?    
 ```python
 # create a list in which each element refers to a DataFrame row: True if the row satisfies the condition, False otherwise
 booleans = []
@@ -408,10 +456,12 @@ buydata = pd.DataFrame()
 
 
 ### first n rows    
-=> How to read first 10 rows of a dataframe?    
+=> How to read first/last 10 rows of a dataframe?    
 ```python
 liangrongdata.head(10)  #前十个数据
 buydata.tail(10) # last 10
+data[0:10]
+data[-10:-1]
 ```
 [Back](#m2-vs-stocks)    
 
