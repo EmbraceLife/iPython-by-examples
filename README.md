@@ -48,6 +48,29 @@
 [How to filter rows of a dataframe?](#filter-rows)    
 [How to filter by multiple conditions on columns?](#more-fitlers)    
 [How to work on or and and?](#or-and)    
+[How to only read certain columns of dataframe?](#read-specific-columns)      
+[How to only read certain rows of dataframe?](#read-specific-rows)    
+[How to iterate a series (like a list)?](#iterate-series)
+
+### read specific rows    
+=> How to only read certain rows of dataframe?     
+- when dealing with huge dataset  
+```python
+ufo = pd.read_csv('http://bit.ly/uforeports', nrows=3)
+ufo
+```
+
+
+### read specific columns    
+=> How to read csv with only specific columns?    
+- when dealing with huge dataset   
+```python
+ufo = pd.read_csv('http://bit.ly/uforeports')
+ufo.columns
+ufo = pd.read_csv('http://bit.ly/uforeports', usecols=['City', 'State'])
+ufo = pd.read_csv('http://bit.ly/uforeports', usecols=[0, 4])
+ufo.columns
+```
 
 
 ### more filters
