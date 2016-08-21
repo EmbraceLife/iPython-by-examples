@@ -1,6 +1,75 @@
 # iPython-by-exmaples
 
 ## **Table of Content**
+[M2 vs Stocks](#m2-vs-stocks)    
+[Learn to plot](#plotting)    
+[Statistics with numpy](#statistics)    
+[Quantopian syntax](#quantopian)    
+
+## quantopian 
+[How to access a stock daily data?](#stock-daily)    
+
+### stock daily
+=> How to access a stock daily data?    
+```python
+data = get_pricing('MSFT', start_date='2012-1-1', end_date='2015-6-1') 
+```
+
+
+
+## plotting   
+
+[How to plot with a single np array?](#plot-array)    
+[How to plot 2 arrays with labels and legend?](#2array-labels-legend)    
+
+### 2array labels legend    
+=> How to plot 2 arrays with labels and legend?    
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+X = np.random.normal(0, 1, 100)
+X2 = np.random.normal(0, 1, 100)
+
+plt.plot(X);
+plt.plot(X2);
+plt.xlabel('Time') # The data we generated is unitless, but don't forget units in general.
+plt.ylabel('Returns')
+plt.legend(['X', 'X2']);
+```
+[Back](#plotting)    
+
+
+
+### plot array   
+=> How to plot with a single np array?    
+```python
+# This is a plotting library for pretty pictures.
+import matplotlib.pyplot as plt
+
+# Sample 100 points with a mean of 0 and an std of 1. This is a standard normal distribution.
+X = np.random.normal(0, 1, 100)
+X[0:5]
+len(X)
+type(X)
+
+%matplotlib inline
+plt.plot(X)
+```
+[Back](#plotting)    
+
+
+## Statistics 
+
+[How to use numpy statistics on numpy array?](#stats-array)    
+
+### stats array 
+=> How to use numpy statistics on numpy array?     
+```python
+np.mean(X)
+np.std(X)
+```
+
 
 ## M2 vs Stocks
 
@@ -57,6 +126,19 @@
 [How to understand use of `inplace=True` in drop columns and rows of a dataframe?](#drop-inplace)    
 [How to refer to rows and columns with axis=0,1,'index','column'?](#axis-row-column)    
 [How to use string methods upper, contains, replace in pandas?](#string-methods)    
+[How to create a random array and test type?](#random-nparray-type)    
+[How to get the type of an object?](#type)    
+
+### random nparray type    
+=> How to create a random array and test type?    
+```python
+import numpy as np
+# Sample 100 points with a mean of 0 and an std of 1. This is a standard normal distribution.
+X = np.random.normal(0, 1, 100)
+X[0:5]
+len(X)
+type(X)
+```
 
 ### string methods
 => How to use string methods in pandas?    
