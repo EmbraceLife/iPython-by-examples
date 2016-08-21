@@ -50,7 +50,132 @@
 [How to work on or and and?](#or-and)    
 [How to only read certain columns of dataframe?](#read-specific-columns)      
 [How to only read certain rows of dataframe?](#read-specific-rows)    
-[How to iterate a series (like a list)?](#iterate-series)
+[How to iterate a series (like a list)?](#iterate-series)    
+[How to iterate a dataframe by rows?](#iterate-dataframe)    
+[How to drop all non-numeric columns or only keep numeric columns of a dataframe?](#numeric-columns)    
+[How to describe only numeric, all, or specific columns of a dataframe?](#describe-dataframe)    
+[How to understand use of `inplace=True` in drop columns and rows of a dataframe?](#drop-inplace)    
+[How to refer to rows and columns with axis=0,1,'index','column'?](#axis-row-column)    
+[How to use string methods upper, contains, replace in pandas?](#string-methods)    
+
+### string methods
+=> How to use string methods in pandas?    
+```python
+orders = pd.read_table('chiporder.tsv')
+orders.head()
+
+# string methods for pandas Series are accessed via 'str'
+orders.item_name.str.upper().head()
+
+# string method 'contains' checks for a substring and returns a boolean Series
+orders.item_name.str.contains('Chicken').head()
+
+# use the boolean Series to filter the DataFrame
+orders[orders.item_name.str.contains('Chicken')].head()
+
+# string methods can be chained together
+orders.choice_description.str.replace('[', '').str.replace(']', '').head()
+
+# many pandas string methods support regular expressions (regex)
+orders.choice_description.str.replace('[\[\]]', '').head()
+```
+
+
+
+### axis row column
+=> How to refer to rows and columns with axis=0,1,'index','column'?    
+- axis = 0 equal to axis = 'index', collapse values vertically or row by row
+- axis = 1 equal to axis = 'column', collapse values horizontally or column by column       
+```python   
+# calculate the mean of each numeric column
+drinks.mean()
+
+# or equivalently, specify the axis explicitly, collapse rows into one 
+drinks.mean(axis=0)
+
+# 'index' is an alias for axis 0
+drinks.mean(axis='index')
+
+# calculate the mean of each row, collapse columns into one 
+drinks.mean(axis=1).head()
+
+# 'columns' is an alias for axis 1
+drinks.mean(axis='columns').head()
+```
+[Back](#m2-vs-stocks)     
+
+
+
+
+### drop inplace     
+=> How to understand use of `inplace=True` in drop columns and rows of a dataframe?    
+- inplace = True: set it permanently 
+
+```python
+import pandas as pd
+ufo = pd.read_csv('ufo.csv')
+
+# drop rows temporarily
+print ufo.drop(2, axis=0).head() # remove the 3rd row
+print ufo.head()
+
+# drop columns temporarily
+print ufo.drop('Time', axis=1).columns
+print ufo.columns
+
+# drop permanently
+ufo.drop([0,1,4], inplace=True, axis=0) # remove the first,second,fifth row
+print ufo.head()
+```
+[Back](#m2-vs-stocks)     
+
+
+
+### describe dataframe    
+=> How to describe only numeric, all, or specific columns of a dataframe?    
+```python
+# describe all of the numeric columns
+drinks.describe()
+
+# pass the string 'all' to describe all columns including strings and others 
+drinks.describe(include='all')
+
+# pass a list of data types to only describe certain types
+drinks.describe(include=['object', 'float64'])
+
+# pass a list even if you only want to describe a single data type
+drinks.describe(include=['object'])
+```
+[Back](#m2-vs-stocks)     
+
+
+
+### numeric columns    
+=> How to drop all non-numeric columns or only keep numeric columns of a dataframe?    
+```python
+# read a dataset of alcohol consumption into a DataFrame, and check the data types
+import pandas as pd
+drinks = pd.read_csv('drinks.csv')
+drinks.dtypes
+
+# only include numeric columns in the DataFrame
+import numpy as np
+drinks.select_dtypes(include=[np.number]).dtypes
+```
+[Back](#m2-vs-stocks)     
+
+
+
+### iterate dataframe    
+=> How to iterate a dataframe by rows?    
+```python
+# various methods are available to iterate through a DataFrame
+for index, row in ufo.iterrows():
+    print(index, row.City, row.State)
+```
+[Back](#m2-vs-stocks)     
+
+
 
 ### read specific rows    
 => How to only read certain rows of dataframe?     
@@ -59,6 +184,7 @@
 ufo = pd.read_csv('http://bit.ly/uforeports', nrows=3)
 ufo
 ```
+[Back](#m2-vs-stocks)     
 
 
 ### read specific columns    
@@ -71,6 +197,7 @@ ufo = pd.read_csv('http://bit.ly/uforeports', usecols=['City', 'State'])
 ufo = pd.read_csv('http://bit.ly/uforeports', usecols=[0, 4])
 ufo.columns
 ```
+[Back](#m2-vs-stocks)     
 
 
 ### more filters
@@ -82,6 +209,7 @@ movies[(movies.genre == 'Crime') | (movies.genre == 'Drama') | (movies.genre == 
 # or equivalently, use the 'isin' method
 movies[movies.genre.isin(['Crime', 'Drama', 'Action'])].head(10)
 ```
+[Back](#m2-vs-stocks)     
 
 
 ### or and 
@@ -94,6 +222,7 @@ data[(data.duration' > 200) & (data.type == 'genre')] # and
 data[(data.duration' > 200) | (data.type == 'genre')] # pipe
 
 ```
+[Back](#m2-vs-stocks)     
 
 
 ### filter rows    
@@ -107,6 +236,7 @@ data[data.duration > 200]['genre']
 # better solution: first row filter and then column selection 
 data.loc(data.duration > 200, 'genre')
 ```
+[Back](#m2-vs-stocks)     
 
 
 ### list to series    
@@ -114,7 +244,7 @@ data.loc(data.duration > 200, 'genre')
 ```python
 is_long_series = pd.Series(is_long_list)
 ```
-
+[Back](#m2-vs-stocks)     
 
 ### length list dataframe     
 => How to check length of a list?    
@@ -122,6 +252,7 @@ is_long_series = pd.Series(is_long_list)
 len(list)
 len(dataframe)
 ```
+[Back](#m2-vs-stocks)     
 
 
 ### fill list    
@@ -136,6 +267,7 @@ for length in movies.duration:
         booleans.append(False)
 
 ```
+[Back](#m2-vs-stocks)     
 
 ### sort dataframe    
 ```python
