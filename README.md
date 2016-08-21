@@ -9,6 +9,31 @@
 ## quantopian 
 [How to access a stock daily data?](#stock-daily)    
 [How to plot a stock series out of the stock dataframe?](#plot-stock-series)     
+[How to calc return from a price series?](#stock-series-return)    
+[How to plot histogram out of a price series?](#histogram-stock-return)    
+
+### histogram stock return
+=> How to plot histogram out of a price series?    
+```python
+plt.hist(R, bins=20)
+plt.xlabel('Return')
+plt.ylabel('Frequency')
+plt.legend(['MSFT Returns']);
+```
+
+
+### stock-series-return
+=> How to calc return from a price series?    
+- first element is 0/something is NaN
+```python
+R = X.pct_change()[1:] # avoid the NaN
+print R.head()
+R1 = X.pct_change()
+print R1.head()
+```
+[Back](#quantopian)    
+
+
 
 ### plot stock series  
 => How to plot a stock series out of the stock dataframe?    
