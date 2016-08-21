@@ -8,13 +8,34 @@
 
 ## quantopian 
 [How to access a stock daily data?](#stock-daily)    
+[How to plot a stock series out of the stock dataframe?](#plot-stock-series)     
+
+### plot stock series  
+=> How to plot a stock series out of the stock dataframe?    
+- a stock series has index and values 
+- plt.plot(x, y) for coord (x,y)  
+```python
+X = data['price'] # close_price series of a stock dataframe
+X.head()
+
+plt.plot(X.index, X.values)
+plt.ylabel('Price')
+plt.legend(['MSFT']);
+```
+[Back](#quantopian)    
+
 
 ### stock daily
 => How to access a stock daily data?    
+- set symbol name
+- set start and end date
+- set fields
+- return dataframe 
 ```python
 data = get_pricing('MSFT', start_date='2012-1-1', end_date='2015-6-1') 
+data = get_pricing('TSLA', start_date='2012-1-1', end_date='', fields = ['open_price', 'close_price'])
 ```
-
+[Back](#quantopian)    
 
 
 ## plotting   
