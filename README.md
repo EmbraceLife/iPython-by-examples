@@ -1,16 +1,437 @@
 # iPython-by-exmaples
 
+
+
 ## **Table of Content**
 [M2 vs Stocks](#m2-vs-stocks)    
+- which stocks rise 5 times or more over last 10 years? 
+- which stocks rise 5 times or more since 2007's high? 
+- What are their distinguished features compared to other stocks?
+- try out every and each important features to find out the interesting ones     
+
 [Learn to plot](#plotting)    
 [Statistics with numpy](#statistics)    
 [Quantopian syntax](#quantopian)    
 
-## quantopian 
+
+
+
+
+
+
+
+
+## M2 vs Stocks
+
+[How to print out stock data info nicely?](#stock-print-nicely)    
+[How to get daily, weekly, monthly stock data?](#daily-weekly-monthly-data)    
+[How to turn codes into a function to easily change a parameter?](#make-func)    
+[How to do basic statistics like `mean()`?](#statistics)    
+[How to fill up columns with 0s with `len(), range(), .iat()`](#fill-up-column)    
+[How to use for in loop with range?](#for-in-range)    
+[How to create a dataframe from scatch?](#dataframe-from-scratch)   
+[How to tranform a column of a dataframe?](#create-column)    
+[How to create an empty dataframe?](#create-empty-dataframe)        
+[How to search and use unpaid dataAPI?](#unpaid-api)    
+[How to read first/last 10 rows of a dataframe?](#first-n-rows)    
+[How to convert a column of a dataframe to a list?](#column-to-list)    
+[How to get all stock names which can be borrowed to sell?](#borrow-sell)     
+[How to convert "2016-08-12" to "20160812"?](#transform-date-string)    
+[How to filter out rows using a column?](#filter-out-rows)    
+[How to access all trading calendar date of ShangHai market?](#trading-date-shanghai)    
+[How to import libraries](#import-lib)    
+[How to save dataframe to csv file?](#save-csv)    
+[How to access a column of a dataframe?](#access-column)    
+[How to plot M2-10-year change?](#m2-10years-plot)    
+[How to search and use DataAPI?](#search-use-dataapi)    
+[How to read a tsv file?](#read-tsv)    
+[How to read dirty file](#read-dirty-file)    
+[How to read csv file?](#read-csv)    
+[How to read dirty file ignoring pre and post comment?](#read-dirty-comment-file)    
+[How to use jupyter notebook?](#jupyter)    
+[What is a dataframe and a pandas series?](#dataframe-series)      
+[How to know an object's type?](#get-type)   
+[How to check basic summary of a dataframe?](#data-summary)    
+[How to understand function, method and attributes to a dataframe or series?](#func-method-attribute)    
+[How to get the types of all columns of a dataframe?](#dtypes)     
+[How to check a function's api?](#check-api)      
+[How to install and update libraries, diff versions?](#install-update-libraries)     
+[How to rename columns of a dataframe?](#rename-columns)    
+[How to remove columns of a dataframe?](#remove-columns)    
+[How to remove rows of a dataframe?](#remove-rows)
+[How to check the structure of a dataframe?](#structure-dataframe)    
+[How to sort a column or a dataframe?](#sort-dataframe)    
+[How to fill a list using for in loop and append?](#fill-list)    
+[How to check length of a list?](#length-list-dataframe)    
+[How to convert a list to a series?](#list-to-series)    
+[How to filter rows of a dataframe?](#filter-rows)    
+[How to filter by multiple conditions on columns?](#more-fitlers)    
+[How to work on or and and?](#or-and)    
+[How to only read certain columns of dataframe?](#read-specific-columns)      
+[How to only read certain rows of dataframe?](#read-specific-rows)    
+[How to iterate a series (like a list)?](#iterate-series)    
+[How to iterate a dataframe by rows?](#iterate-dataframe)    
+[How to drop all non-numeric columns or only keep numeric columns of a dataframe?](#numeric-columns)    
+[How to describe only numeric, all, or specific columns of a dataframe?](#describe-dataframe)    
+[How to understand use of `inplace=True` in drop columns and rows of a dataframe?](#drop-inplace)    
+[How to refer to rows and columns with axis=0,1,'index','column'?](#axis-row-column)    
+[How to use string methods upper, contains, replace in pandas?](#string-methods)    
+[How to create a random array and test type?](#random-nparray-type)    
+[How to get the type of an object?](#type)    
+[How to create a small dataframe?](#create-dataframe)    
+[How to row-bind dataframe?](#row-bind-dataframe)    
 [How to access a stock daily data?](#stock-daily)    
 [How to plot a stock series out of the stock dataframe?](#plot-stock-series)     
 [How to calc return from a price series?](#stock-series-return)    
 [How to plot histogram out of a price series?](#histogram-stock-return)    
+[How to use numpy statistics on numpy array?](#stats-array)    
+
+## part2   
+[Three ways to create a figure or graph](#create-a-figure)    
+[How to create a random table of data but not a dataframe?](#numpy-random-table)    
+[How to create a simple numpy array?](#create-numpy-array)    
+[How to create an array range from 0 to 99?](#create-numpy-array-range)
+[How to change an array to a table?](#array-to-table)    
+[How to turn a single array to multi-dim table?](#array-to-multi-dim-table)     
+[How numpy array select by index?](#numpy-index)    
+[How numpy array select on condition?](#condition-selection)        
+[how to create array with specific range and intervals?](#numpy-array-range-intervals)      
+[How to create a table by multiply a row array and a column array?](#row-multiply-column)       
+[How to find out the version and backend of matplotlib?](#matplotlib-version)    
+[How to plot graph inside jupyter cell?](#matplotlib-inline)    
+[How to create an empty graph?](#empty-graph)        
+[how to create a graph with double tall than wide?](#empty-graph-double-height)     
+[How to create a graph with axis, title and label?](#create-axis-title-label)        
+[How to create a graph with line plot and scatterplot?](#line-scatterplot)    
+[How to create multiple graphs on a chart?](#multiple-charts)       
+[Three ways to create a figure or graph](#create-a-figure)    
+
+
+
+
+
+
+### array to multi dim table
+=> How to turn a single array to multi-dim table?     
+```python
+y.shape = (4, 20, -1) # dimension, row, column
+print(y.shape)
+# print(y)
+# print(y[0:3])
+print(y[0:3, 11:15, 3:5])
+y.shape = (2,2, -1)
+# y.shape = (2,2,100)
+print(y[0:2,0:2,0:3])
+```
+[Back](#part2)
+
+### array to table
+=> How to change an array to a table?    
+```python
+x.shape = (20, 5) # change single column to 20x5
+print(x)
+```
+[Back](#part2)    
+
+
+
+### create numpy array range    
+=> How to create an array range 0-99
+```python
+x = np.arange(100)
+print(x.shape)
+print(x.size)
+print(x.ndim)
+```
+[Back](#part2)    
+
+
+
+### create numpy array
+=> how to create a simple array
+```python
+a = np.array([1, 2, 3])
+print(a.shape)
+print(a.size)
+print(a.ndim)
+```
+[Back](#part2)  
+
+
+### numpy random table
+=> How to create a random table?
+```python
+import numpy as np  
+y = np.random.rand(5, 80)
+print(y.shape)
+print(y.size)
+print(y.ndim)
+y[0:5,0:8]
+```
+[Back](#part2)    
+
+
+
+
+### numpy index     
+=> How numpy array select by index    
+```python
+# Advanced slicing
+print("First 5 rows\n", x[:5])
+print("Row 18 to the end\n", x[18:])
+print("Last 5 rows\n", x[-5:])
+print("Reverse the rows\n", x[::-1])
+
+# Fancy Indexing -- Note the use of a list, not tuple!
+print(x[[1, 3, 8, 9, 2]])
+```
+[Back](#part2)    
+
+
+
+
+### condition selection
+=> How numpy array select on condition?    
+```python
+# Boolean Indexing
+print(x[(x % 2) == 0])
+```
+[Back](#part2)    
+
+
+ 
+
+### numpy array range intervals    
+=> how to create array with specific range and intervals?    
+```python
+x = np.arange(-5, 5, 0.1)
+y = np.arange(-8, 8, 0.25)
+```
+[Back](#part2)      
+
+
+
+
+ 
+
+
+
+### row multiply column    
+=> How to create a table by multiply a row array and a column array?    
+- you know what the first row value is like
+- you know what the first column value is like
+- you want to the middle meat of the table to be row and column multiply
+```python
+
+x = np.arange(-5, 5, 0.1)
+y = np.arange(-8, 8, 0.25)
+print(x.shape)
+print(y.shape)
+x.shape = (-1,1)  # make it a multi-row but 1 column
+y.shape = (1,-1) # make it a multi-column but 1 row
+print(x.shape)
+print(y.shape)
+print((x*y).shape)
+
+x,y = np.ogrid[-5:5:0.1, -8:8:0.25]
+print(x.shape, y.shape)
+z = x * y
+print(z.shape)
+```
+[Back](#part2)      
+
+
+
+
+
+
+### matplotlib version    
+=> How to find out the version of matplotlib?
+```python
+import matplotlib
+print(matplotlib.__version__)     
+print(matplotlib.get_backend())    
+```
+[Back](#part2)      
+
+ 
+
+
+### matplotlib inline    
+=> How to plot graph inside jupyter cell?     
+```python  
+import matplotlib
+print(matplotlib.__version__)
+print(matplotlib.get_backend())
+
+# method one
+matplotlib.use('nbagg') # 'nbagg' 'MacOSX'
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# make a graph, then to display use the following code
+plt.show()
+
+##########################################
+# method two
+%matplotlib nbagg
+
+import numpy as np
+import matplotlib.pyplot as plt
+# directly plot graph
+
+##########################################
+matplotlib.use('MacOSX')  # floating plot graph window  
+
+```
+[Back](#part2)       
+
+
+
+
+
+
+### empty graph
+=> How to create an empty graph    
+```python
+fig = plt.figure()
+```
+[Back](#part2)       
+
+
+
+
+
+### empty graph double height
+=> how to create a graph with double tall than wide
+```python
+# Twice as tall as it is wide:
+fig = plt.figure(figsize=plt.figaspect(2.0))
+```
+[Back](#part2)       
+
+
+
+
+
+### create axis title label
+=> How to create a graph with axis, title and label?    
+```python
+fig = plt.figure()
+ax = fig.add_subplot(111) # We'll explain the "111" later. Basically, 1 row and 1 column.
+ax.set(xlim=[0.5, 4.5], ylim=[-2, 8], title='An Example Axes', ylabel='Y-Axis', xlabel='X-Axis')
+
+###############################
+fig = plt.figure()
+ax = fig.add_subplot(111)
+ax.set_xlim([0.5, 4.5])
+ax.set_ylim([-2, 8])
+ax.set_title('An Example Axes')
+ax.set_ylabel('Y-Axis')
+ax.set_xlabel('X-Axis')
+
+```
+[Back](#part2)        
+
+
+
+
+### line scatterplot
+=> create a graph with line plot and scatterplot
+```python
+fig = plt.figure()
+ax = fig.add_subplot(111)
+ax.plot([1, 2, 3, 4], [10, 20, 25, 30], color='lightblue', linewidth=3)
+ax.scatter([0.3, 3.8, 1.2, 2.5], [11, 25, 9, 26], color='darkgreen', marker='^')
+ax.set_xlim(0.5, 4.5)
+
+##################### method 2
+fig = plt.figure()
+ax = fig.add_subplot(111)
+plt.plot([1, 2, 3, 4], [10, 20, 25, 30], color='lightblue', linewidth=3)
+plt.scatter([0.3, 3.8, 1.2, 2.5], [11, 25, 9, 26], color='darkgreen', marker='^')
+plt.xlim(0.5, 4.5)
+
+```
+[Back](#part2)        
+
+
+
+
+### multiple charts   
+=> How to create multiple graphs on a chart?   
+=> How to plot lines and scatterplot?
+```python
+fig, axes = plt.subplots(nrows=2, ncols=2)
+axes[0,0].set(title='Upper Left')
+axes[0,1].set(title='Upper Right')
+axes[1,0].set(title='Lower Left')
+axes[1,1].set(title='Lower Right')
+
+# # To iterate over all items in a multidimensional numpy array, use the `flat` attribute
+for ax in axes.flat:
+    # Remove all xticks and yticks...
+    ax.set(xticks=[], yticks=[])
+
+################# a full example ##################
+import matplotlib
+print(matplotlib.__version__)
+print(matplotlib.get_backend())
+
+# method one
+%matplotlib nbagg
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Try to reproduce the figure shown in images/exercise_1-1.png
+
+# Our data...
+x = np.linspace(0, 10, 100)
+y1, y2, y3 = np.cos(x), np.cos(x + 1), np.cos(x + 2)
+names = ['Signal 1', 'Signal 2', 'Signal 3']
+
+names[1]
+
+# Can you figure out what to do next to plot x vs y1, y2, and y3 on one figure?
+fig, axes = plt.subplots(nrows=3, ncols=1)
+axes[0].set(title=names[0])
+axes[1].set(title=names[1])
+axes[2].set(title=names[2])
+axes[0].plot(y1, color='lightblue', linewidth=3)
+axes[1].plot(y2, color='lightblue', linewidth=3)
+axes[2].plot(y3, color='lightblue', linewidth=3)
+
+```
+[Back](#part2)        
+
+
+
+### create a figure    
+=> Three ways to create a figure or graph     
+```python
+fig = plt.figure() # a figure with a single axis
+ax = fig.add_subplot(111) # a figure with a single axis
+
+fig, ax = plt.subplots() # a figure with a single axis
+```
+[Back](#part2)     
+
+
+
+
+
+### stats array 
+=> How to use numpy statistics on numpy array?     
+```python
+np.mean(X)
+np.std(X)
+```
+
+
+
+
 
 ### histogram stock return
 => How to plot histogram out of a price series?    
@@ -105,75 +526,30 @@ plt.plot(X)
 [Back](#plotting)    
 
 
-## Statistics 
 
-[How to use numpy statistics on numpy array?](#stats-array)    
 
-### stats array 
-=> How to use numpy statistics on numpy array?     
+
+
+### row bind dataframe 
+=> How to row-bind dataframe?    
 ```python
-np.mean(X)
-np.std(X)
+df_new = pd.concat([df_a, df_b])
+df_new
 ```
 
 
-## M2 vs Stocks
+### create dataframe    
+=> How to create a small dataframe?     
+```python
+raw_data = {
+        'subject_id': ['4', '5', '6', '7', '8'],
+        'first_name': ['Billy', 'Brian', 'Bran', 'Bryce', 'Betty'], 
+        'last_name': ['Bonder', 'Black', 'Balwner', 'Brice', 'Btisan']}
+df_b = pd.DataFrame(raw_data, columns = ['subject_id', 'first_name', 'last_name'])
+df_b
+```
+[Back](#m2-vs-stocks)     
 
-[How to print out stock data info nicely?](#stock-print-nicely)    
-[How to get daily, weekly, monthly stock data?](#daily-weekly-monthly-data)    
-[How to turn codes into a function to easily change a parameter?](#make-func)    
-[How to do basic statistics like `mean()`?](#statistics)    
-[How to fill up columns with 0s with `len(), range(), .iat()`](#fill-up-column)    
-[How to use for in loop with range?](#for-in-range)    
-[How to create a dataframe from scatch?](#dataframe-from-scratch)   
-[How to tranform a column of a dataframe?](#create-column)    
-[How to create an empty dataframe?](#create-empty-dataframe)        
-[How to search and use unpaid dataAPI?](#unpaid-api)    
-[How to read first/last 10 rows of a dataframe?](#first-n-rows)    
-[How to convert a column of a dataframe to a list?](#column-to-list)    
-[How to get all stock names which can be borrowed to sell?](#borrow-sell)     
-[How to convert "2016-08-12" to "20160812"?](#transform-date-string)    
-[How to filter out rows using a column?](#filter-out-rows)    
-[How to access all trading calendar date of ShangHai market?](#trading-date-shanghai)    
-[How to import libraries](#import-lib)    
-[How to save dataframe to csv file?](#save-csv)    
-[How to access a column of a dataframe?](#access-column)    
-[How to plot M2-10-year change?](#m2-10years-plot)    
-[How to search and use DataAPI?](#search-use-dataapi)    
-[How to read a tsv file?](#read-tsv)    
-[How to read dirty file](#read-dirty-file)    
-[How to read csv file?](#read-csv)    
-[How to read dirty file ignoring pre and post comment?](#read-dirty-comment-file)    
-[How to use jupyter notebook?](#jupyter)    
-[What is a dataframe and a pandas series?](#dataframe-series)      
-[How to know an object's type?](#get-type)   
-[How to check basic summary of a dataframe?](#data-summary)    
-[How to understand function, method and attributes to a dataframe or series?](#func-method-attribute)    
-[How to get the types of all columns of a dataframe?](#dtypes)     
-[How to check a function's api?](#check-api)      
-[How to install and update libraries, diff versions?](#install-update-libraries)     
-[How to rename columns of a dataframe?](#rename-columns)    
-[How to remove columns of a dataframe?](#remove-columns)    
-[How to remove rows of a dataframe?](#remove-rows)
-[How to check the structure of a dataframe?](#structure-dataframe)    
-[How to sort a column or a dataframe?](#sort-dataframe)    
-[How to fill a list using for in loop and append?](#fill-list)    
-[How to check length of a list?](#length-list-dataframe)    
-[How to convert a list to a series?](#list-to-series)    
-[How to filter rows of a dataframe?](#filter-rows)    
-[How to filter by multiple conditions on columns?](#more-fitlers)    
-[How to work on or and and?](#or-and)    
-[How to only read certain columns of dataframe?](#read-specific-columns)      
-[How to only read certain rows of dataframe?](#read-specific-rows)    
-[How to iterate a series (like a list)?](#iterate-series)    
-[How to iterate a dataframe by rows?](#iterate-dataframe)    
-[How to drop all non-numeric columns or only keep numeric columns of a dataframe?](#numeric-columns)    
-[How to describe only numeric, all, or specific columns of a dataframe?](#describe-dataframe)    
-[How to understand use of `inplace=True` in drop columns and rows of a dataframe?](#drop-inplace)    
-[How to refer to rows and columns with axis=0,1,'index','column'?](#axis-row-column)    
-[How to use string methods upper, contains, replace in pandas?](#string-methods)    
-[How to create a random array and test type?](#random-nparray-type)    
-[How to get the type of an object?](#type)    
 
 ### random nparray type    
 => How to create a random array and test type?    
@@ -185,6 +561,7 @@ X[0:5]
 len(X)
 type(X)
 ```
+[Back](#m2-vs-stocks)     
 
 ### string methods
 => How to use string methods in pandas?    
@@ -207,6 +584,7 @@ orders.choice_description.str.replace('[', '').str.replace(']', '').head()
 # many pandas string methods support regular expressions (regex)
 orders.choice_description.str.replace('[\[\]]', '').head()
 ```
+[Back](#m2-vs-stocks)     
 
 
 
