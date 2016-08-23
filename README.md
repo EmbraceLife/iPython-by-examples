@@ -120,10 +120,133 @@
 [4. How to create straight lines and curve line?](#seed-array-figure-barchart-axisLine)        
 [5. Plot the envelope with `fill_between`](#seed-array-figure-barchart-axisLine)        
 [6. Plot the "centerCurveline" with `plot`](#seed-array-figure-barchart-axisLine)        
-[1. How to create custom x, y arrays ?]
+[1. How to create custom x, y arrays?](#example3)      
+[2. How to convert array to a table of 100 columns?](#example3)        
+[3. How to get min value for each row of table?](#example3)       
+[4. How to get mean value for each row of table?](#example3)      
+[5. How to get max-min value for each row of table?](#example3)       
+[6. How to create two straight lines in x and y coords?](#example3)      
+[7. How to create a line using x and y arrays?](#example3)           
+[8. How to create barchart with error lines?](#example3)       
+[9. How to create areaChart between two straight lines?](#example3)        
+[10. How to set title, labels](#example3)      
+[1. import a func to get data from matplotlib.cbook](#example4)    
+[2. load data with numpy func](#example4)     
+[3. create a single figure?](#example4)      
+[4. How to create color map with numpy table like array?](#example4)    
+[5. How to add color map legend?](#example4)     
+[video: colormap](https://youtu.be/IF1n9TA1dO0)    
+[1. How to create a legend box for a colormap graph?](#example5)    
+[2. How to create a colormap with a color style?](#example5)    
+[3. How to create colormap legend using a custom legend box?](#example5)    
+[1. How to create a colormap with different color style and display as blocks?](#example6)    
+[2. How to create a colormap legend by default?](#example6)    
+[1. How to set value-min and value-max to be symmetric?](#example7)    
+[1. How to create 3 custom 10x10 random tables with numpy array?]
+[2. How to create a figure with 3 subplots and leave some space for legend?]
+[3. How to set padding for figure and subplots?]
 
 
-### 
+
+### example8
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+np.random.seed(1)
+
+# 1. How to create 3 custom 10x10 random tables with numpy array?
+data1 = np.random.random((10, 10))
+data2 = 2 * np.random.random((10, 10))
+data3 = 3 * np.random.random((10, 10))
+
+# 2. How to create a figure with 3 subplots and leave some space for legend?
+fig, axes = plt.subplots(nrows=3, figsize=plt.figaspect(2))
+
+# 3. How to set padding for figure and subplots?
+fig.tight_layout() # Make the subplots fill up the figure a bit more...
+
+cax = fig.add_axes([0.85, 0.1, 0.03, 0.8]) # Add an axes for the colorbar
+
+# Now you're on your own!
+for ax, data in zip(axes, [data1, data2, data3]):
+    im = ax.imshow(data, vmin=0, vmax=3, interpolation='nearest')
+
+fig.colorbar(im, cax=cax, orientation='vertical')
+plt.show()
+```
+
+
+### example7   
+```python
+fig, ax = plt.subplots()
+
+# 1. How to set value-min and value-max to be symmetric? 
+im = ax.imshow(data, cmap='seismic', interpolation='nearest',
+               vmin=-2, vmax=2)
+fig.colorbar(im)
+plt.show()
+```
+
+
+
+### example6  
+```python
+
+from matplotlib.cbook import get_sample_data
+# data = np.load(get_sample_data('axes_grid/bivariate_normal.npy'))
+
+fig, ax = plt.subplots()
+
+# 1. How to create a colormap with different color style and display as blocks?
+im = ax.imshow(data, cmap='seismic', interpolation='nearest')
+
+# 2. How to create a colormap legend by default?
+fig.colorbar(im)
+plt.show()
+```
+
+### example5   
+```python
+fig, ax = plt.subplots()
+
+# 1. How to create a legend box for a colormap graph?
+cax = fig.add_axes([0.27, 0.2, 0.05, 0.6])
+
+# 2. How to create a colormap with a color style? 
+im = ax.imshow(data, cmap='gist_earth')
+
+# 3. How to create colormap legend using a custom legend box? 
+fig.colorbar(im, cax=cax, orientation='vertical')
+
+plt.show()
+```
+
+### example4
+```python
+# 1. import a func to get data from matplotlib.cbook
+from matplotlib.cbook import get_sample_data
+
+# 2. load data with numpy func 
+data = np.load(get_sample_data('axes_grid/bivariate_normal.npy'))
+print(data.shape)
+print(data[0,0:15])
+
+# 3. create a single figure?
+fig, ax = plt.subplots()
+
+# 4. How to create color map with numpy table like array? 
+im = ax.imshow(data, cmap='gist_earth')
+
+# 5. How to add color map legend?    
+fig.colorbar(im)
+
+plt.show()
+```
+
+
+
+
+### example3
 ```python
 import numpy as np
 import matplotlib.pyplot as plt
@@ -135,14 +258,19 @@ np.random.seed(1)
 y_raw = np.random.randn(1000).cumsum() + 15
 x_raw = np.linspace(0, 24, y_raw.size)
 
-# Get averages of every 100 samples...
+# 2. How to convert array to a table of 100 columns?  
+# 3. How to get min value for each row of table? 
+# collapse all columns to one value for each row 
 x_pos = x_raw.reshape(-1, 100).min(axis=1)
+# 4. How to get mean value for each row of table ? 
 y_avg = y_raw.reshape(-1, 100).mean(axis=1)
+# 5. How to get max-min value for each row of table? 
 y_err = y_raw.reshape(-1, 100).ptp(axis=1)
 
 bar_width = x_pos[1] - x_pos[0]
 
 # Make a made up future prediction with a fake confidence
+# 6. How to create two straight lines in x and y coords? 
 x_pred = np.linspace(0, 30)
 y_max_pred = y_avg[0] + y_err[0] + 2.3 * x_pred
 y_min_pred = y_avg[0] - y_err[0] + 1.2 * x_pred
@@ -153,19 +281,22 @@ barcolor, linecolor, fillcolor = 'wheat', 'salmon', 'lightblue'
 # Now you're on your own!
 fig, ax = plt.subplots()
 
-
+# 7. How to create a line using x and y arrays? 
 ax.plot(x_raw, y_raw, color=linecolor)
+
+# 8. How to create barchart with error lines? 
 ax.bar(x_pos, y_avg, width=bar_width, color=barcolor, yerr=y_err, 
        ecolor='gray', edgecolor='cyan')
-# ax.fill_between(x_pred, y_min_pred, y_max_pred, color=fillcolor)
 
-# ax.set(title='Future Projection of Attitudes', 
-#        ylabel='Snarkiness (snark units)', 
-#        xlabel='Minutes since class began')
+# 9. How to create areaChart between two straight lines? 
+ax.fill_between(x_pred, y_min_pred, y_max_pred, color=fillcolor)
+
+# 10. How to set title, labels
+ax.set(title='Future Projection of Attitudes', 
+        ylabel='Snarkiness (snark units)', 
+        xlabel='Minutes since class began')
 
 plt.show()
-
-
 ```
 
 
