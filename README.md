@@ -105,9 +105,135 @@
 [How to create a graph with line plot and scatterplot?](#line-scatterplot)    
 [How to create multiple graphs on a chart?](#multiple-charts)       
 [Three ways to create a figure or graph](#create-a-figure)    
+[How to set random seed?](#seed-array-figure-barchart-axisLine)     
+[How to create numpy arrays?](#seed-array-figure-barchart-axisLine)    
+[How to create a 1row-2column figure?](#seed-array-figure-barchart-axisLine)    
+[How to create horizontal-vertical barchart?](#seed-array-figure-barchart-axisLine)    
+[How to create horizontal-vertical lines?](#seed-array-figure-barchart-axisLine)    
+[How to create a single empty figure?](#seed-array-figure-barchart-axisLine)    
+[How to create a single barchart for a subplot?](#seed-array-figure-barchart-axisLine)    
+[How to loop all to select certain bars and change them?](#seed-array-figure-barchart-axisLine)         
+[How to access a single bar's x and y values?](#seed-array-figure-barchart-axisLine)        
+[1. How to create a 100 random number and cumsum them?](#seed-array-figure-barchart-axisLine)        
+[2. How to create a 100 equal spaced numbers between 0 and 99?](#seed-array-figure-barchart-axisLine)        
+[3. How to create a areaChart or fill_between chart between y value and 0?](#seed-array-figure-barchart-axisLine)        
+[4. How to create straight lines and curve line?](#seed-array-figure-barchart-axisLine)        
+[5. Plot the envelope with `fill_between`](#seed-array-figure-barchart-axisLine)        
+[6. Plot the "centerCurveline" with `plot`](#seed-array-figure-barchart-axisLine)        
+
+### seed array figure barchart axisLine
+```python
+# Let's get our standard imports out of the way
+from __future__ import print_function
+import numpy as np
+import matplotlib
+matplotlib.use('nbagg')
+import matplotlib.pyplot as plt
+
+# set seed
+np.random.seed(1)
+
+# create arrays
+x = np.arange(5)
+y = np.random.randn(5)
+
+# create 1row 2column figure
+fig, axes = plt.subplots(ncols=2, figsize=plt.figaspect(1./2))
+
+# create horizontal and vertical bars 
+vert_bars = axes[0].bar(x, y, color='lightblue', align='center')
+horiz_bars = axes[1].barh(x, y, color='lightblue', align='center')
+
+# I'll also introduce axhline & axvline to draw a line all the way across the axes
+# This can be a quick-n-easy way to draw an axis "spine".
+axes[0].axhline(0, color='gray', linewidth=2)
+axes[1].axvline(0, color='gray', linewidth=2)
+
+plt.show()
+
+##################
+
+# create a single empty figure
+fig, ax = plt.subplots()
+
+# create a barchart 
+vert_bars = ax.bar(x, y, color='lightblue', align='center')
+
+# loop all to select certain bars and change them 
+for bar in vert_bars:
+
+# access x value with bar.xy[0], access y value with bar.xy[1]
+    if bar.xy[0] < 2:
+        bar.set(edgecolor='darkred', color='salmon', linewidth=3)
+
+plt.show()
+
+####################################### Create areaChart or fill_between y and 0
+
+np.random.seed(1)
+
+# 1. How to create a 100 random number and cumsum them? 
+y = np.random.randn(100).cumsum()
+# np.cumsum() 
+
+# 2. How to create a 100 equal spaced numbers between 0 and 99?
+x = np.linspace(0, 10, 100)
+print("x head", x[0:5])
+
+# 3. How to create a areaChart or fill_between chart between y value and 0?
+fig, ax = plt.subplots()
+ax.fill_between(x, y, color='lightblue')
+plt.show()
+
+####################################### create areaChart between two lines 
+
+x = np.linspace(0, 10, 200)
+
+# 4. How to create straight lines and curve line?
+y1 = 2 * x + 1
+y2 = 3 * x + 1.2
+y_mean = 0.5 * x * np.cos(2*x) + 2.5 * x + 1.1
+
+fig, ax = plt.subplots()
+
+# 5. Plot the envelope with `fill_between`
+ax.fill_between(x, y1, y2, color='yellow')
+
+# 6. Plot the "centerCurveline" with `plot`
+ax.plot(x, y_mean, color='black')
+
+plt.show()
 
 
+####################################### exercise  
+# %load exercises/2.1-bar_and_fill_between.py
+import numpy as np
+import matplotlib.pyplot as plt
+np.random.seed(1)
 
+# Generate data...
+y_raw = np.random.randn(1000).cumsum() + 15
+x_raw = np.linspace(0, 24, y_raw.size)
+
+# Get averages of every 100 samples...
+x_pos = x_raw.reshape(-1, 100).min(axis=1)
+y_avg = y_raw.reshape(-1, 100).mean(axis=1)
+y_err = y_raw.reshape(-1, 100).ptp(axis=1)
+
+bar_width = x_pos[1] - x_pos[0]
+
+# Make a made up future prediction with a fake confidence
+x_pred = np.linspace(0, 30)
+y_max_pred = y_avg[0] + y_err[0] + 2.3 * x_pred
+y_min_pred = y_avg[0] - y_err[0] + 1.2 * x_pred
+
+# Just so you don't have to guess at the colors...
+barcolor, linecolor, fillcolor = 'wheat', 'salmon', 'lightblue'
+
+# Now you're on your own!
+
+
+```
 
 
 
@@ -264,25 +390,14 @@ import matplotlib
 print(matplotlib.__version__)
 print(matplotlib.get_backend())
 
-# method one
-matplotlib.use('nbagg') # 'nbagg' 'MacOSX'
-
+# Let's get our standard imports out of the way
+from __future__ import print_function
 import numpy as np
+import matplotlib
+matplotlib.use('nbagg') # or %matplotlib nbagg
 import matplotlib.pyplot as plt
 
-# make a graph, then to display use the following code
-plt.show()
-
-##########################################
-# method two
-%matplotlib nbagg
-
-import numpy as np
-import matplotlib.pyplot as plt
-# directly plot graph
-
-##########################################
-matplotlib.use('MacOSX')  # floating plot graph window  
+plt.show() # or not with %
 
 ```
 [Back](#part2)       
