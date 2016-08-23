@@ -142,10 +142,10 @@
 [1. How to create a colormap with different color style and display as blocks?](#example6)    
 [2. How to create a colormap legend by default?](#example6)    
 [1. How to set value-min and value-max to be symmetric?](#example7)    
-[1. How to create 3 custom 10x10 random tables with numpy array?]
-[2. How to create a figure with 3 subplots and leave some space for legend?]
-[3. How to set padding for figure and subplots?]
-
+[1. How to create 3 custom 10x10 random tables with numpy array?](#example8)    
+[2. How to create a figure with 3 subplots and leave some space for legend?](#example8)    
+[3. How to set padding for figure and subplots?](#example8)    
+[4. How to loop every subplots and datasets and create a colormap for each?](#example8)    
 
 
 ### example8
@@ -167,7 +167,7 @@ fig.tight_layout() # Make the subplots fill up the figure a bit more...
 
 cax = fig.add_axes([0.85, 0.1, 0.03, 0.8]) # Add an axes for the colorbar
 
-# Now you're on your own!
+# 4. How to loop every subplots and datasets and create a colormap for each?
 for ax, data in zip(axes, [data1, data2, data3]):
     im = ax.imshow(data, vmin=0, vmax=3, interpolation='nearest')
 
