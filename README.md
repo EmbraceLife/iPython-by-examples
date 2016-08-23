@@ -1,28 +1,22 @@
 # iPython-by-exmaples
 
 
-
-## **Table of Content**
-[M2 vs Stocks](#m2-vs-stocks)    
+## **Tasks**
+**Use Bokeh Movies example**
 - which stocks rise 5 times or more over last 10 years? 
 - which stocks rise 5 times or more since 2007's high? 
 - What are their distinguished features compared to other stocks?
-- try out every and each important features to find out the interesting ones     
-
-[Learn to plot](#plotting)    
-[Statistics with numpy](#statistics)    
-[Quantopian syntax](#quantopian)    
+- try out every and each important features to find out the interesting ones   
 
 
 
+## **Table of Content**
 
-
-
-
-
+  
 
 ## M2 vs Stocks
-
+[Where to find bokeh dataset locally?](#bokeh-datasets)    
+[How to download specific folder from a github repo?](#repo-folder)    
 [How to print out stock data info nicely?](#stock-print-nicely)    
 [How to get daily, weekly, monthly stock data?](#daily-weekly-monthly-data)    
 [How to turn codes into a function to easily change a parameter?](#make-func)    
@@ -146,7 +140,66 @@
 [2. How to create a figure with 3 subplots and leave some space for legend?](#example8)    
 [3. How to set padding for figure and subplots?](#example8)    
 [4. How to loop every subplots and datasets and create a colormap for each?](#example8)    
+[1. How to create 3 lines altogether?](#speakMPL)     
+[Frequently used color names for bokeh and all color names ?](#color-bokeh)    
+[marks used by bokeh](#markers)    
 
+
+### Markers
+[Markers](http://matplotlib.org/api/markers_api.html) are commonly used in [`plot()`](http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.plot) and [`scatter()`](http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.scatter) plots, but also show up elsewhere. There is a wide set of markers available, and custom markers can even be specified.
+
+marker     |  description  ||marker    |  description  ||marker    |  description  ||marker    |  description  
+:----------|:--------------||:---------|:--------------||:---------|:--------------||:---------|:--------------
+"."        |  point        ||"+"       |  plus         ||","       |  pixel        ||"x"       |  cross
+"o"        |  circle       ||"D"       |  diamond      ||"d"       |  thin_diamond ||          |
+"8"        |  octagon      ||"s"       |  square       ||"p"       |  pentagon     ||"\*"      |  star
+"&#124;"   |  vertical line||"\_"      | horizontal line ||"h"     |  hexagon1     ||"H"       |  hexagon2
+0          |  tickleft     ||4         |  caretleft    ||"<"       | triangle_left ||"3"       |  tri_left
+1          |  tickright    ||5         |  caretright   ||">"       | triangle_right||"4"       |  tri_right
+2          |  tickup       ||6         |  caretup      ||"^"       | triangle_up   ||"2"       |  tri_up
+3          |  tickdown     ||7         |  caretdown    ||"v"       | triangle_down ||"1"       |  tri_down
+"None"     |  nothing      ||`None`    |  nothing      ||" "       |  nothing      ||""        |  nothing
+
+
+### color bokeh
+- b: blue
+- g: green
+- r: red
+- c: cyan
+- m: magenta
+- y: yellow
+- k: black
+- w: white
+[full list](http://www.w3schools.com/html/html_colornames.asp)
+
+### speakMPL
+```python
+from __future__ import print_function
+# Turning on inline plots -- just for use in ipython notebooks.
+import matplotlib
+matplotlib.use('nbagg')
+import numpy as np
+import matplotlib.pyplot as plt
+
+t = np.arange(0.0, 5.0, 0.2)
+
+# 1. How to create 3 lines altogether? 
+plt.plot(t, t,  t, t**2,  t, t**3 )
+plt.show()
+```
+
+
+
+### bokeh datasets
+- Users -> Natsume -> .bokeh
+
+
+
+### repo folder   
+```
+svn checkout https://github.com/githubUserName/repoName/trunk/folderName
+svn checkout https://github.com/EmbraceLife/bokeh/trunk/examples
+```
 
 ### example8
 ```python
