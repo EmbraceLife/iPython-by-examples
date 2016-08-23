@@ -148,16 +148,16 @@
 ### Markers
 [Markers](http://matplotlib.org/api/markers_api.html) are commonly used in [`plot()`](http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.plot) and [`scatter()`](http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.scatter) plots, but also show up elsewhere. There is a wide set of markers available, and custom markers can even be specified.
 
-marker     |  description  ||marker    |  description  ||marker    |  description  ||marker    |  description  
-"."        |  point        ||"+"       |  plus         ||","       |  pixel        ||"x"       |  cross
-"o"        |  circle       ||"D"       |  diamond      ||"d"       |  thin_diamond ||          |
-"8"        |  octagon      ||"s"       |  square       ||"p"       |  pentagon     ||"\*"      |  star
-"&#124;"   |  vertical line||"\_"      | horizontal line ||"h"     |  hexagon1     ||"H"       |  hexagon2
-0          |  tickleft     ||4         |  caretleft    ||"<"       | triangle_left ||"3"       |  tri_left
-1          |  tickright    ||5         |  caretright   ||">"       | triangle_right||"4"       |  tri_right
-2          |  tickup       ||6         |  caretup      ||"^"       | triangle_up   ||"2"       |  tri_up
-3          |  tickdown     ||7         |  caretdown    ||"v"       | triangle_down ||"1"       |  tri_down
-"None"     |  nothing      ||`None`    |  nothing      ||" "       |  nothing      ||""        |  nothing
+marker     |  description  |marker    |  description  |marker    |  description  |marker    |  description  
+"."        |  point        |"+"       |  plus         |","       |  pixel        |"x"       |  cross
+"o"        |  circle       |"D"       |  diamond      |"d"       |  thin_diamond |          |
+"8"        |  octagon      |"s"       |  square       |"p"       |  pentagon     |"\*"      |  star
+"&#124;"   |  vertical line|"\_"      | horizontal line |"h"     |  hexagon1     |"H"       |  hexagon2
+0          |  tickleft     |4         |  caretleft    |"<"       | triangle_left |"3"       |  tri_left
+1          |  tickright    |5         |  caretright   |">"       | triangle_right|"4"       |  tri_right
+2          |  tickup       |6         |  caretup      |"^"       | triangle_up   |"2"       |  tri_up
+3          |  tickdown     |7         |  caretdown    |"v"       | triangle_down |"1"       |  tri_down
+"None"     |  nothing      |`None`    |  nothing      |" "       |  nothing      |""        |  nothing
 
 
 ### color bokeh
