@@ -149,6 +149,7 @@
 [Markers](http://matplotlib.org/api/markers_api.html) are commonly used in [`plot()`](http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.plot) and [`scatter()`](http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.scatter) plots, but also show up elsewhere. There is a wide set of markers available, and custom markers can even be specified.
 
 marker     |  description  |marker    |  description  |marker    |  description  |marker    |  description  
+-----------|---------------|----------|---------------|----------|---------------|----------|-------------
 "."        |  point        |"+"       |  plus         |","       |  pixel        |"x"       |  cross
 "o"        |  circle       |"D"       |  diamond      |"d"       |  thin_diamond |          |
 "8"        |  octagon      |"s"       |  square       |"p"       |  pentagon     |"\*"      |  star
