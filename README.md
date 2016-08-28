@@ -12,6 +12,8 @@
 
 ## **Table of Content**
 
+## DataSchool Pandas
+[How to load file with pd.read_table()](http://localhost:8888/notebooks/Load%20file%20with%20pd.read_table.ipynb)
   
 
 ## M2 vs Stocks
